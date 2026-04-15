@@ -31,7 +31,7 @@ public class ReservationsController : ControllerBase
         {
             var room = DataBase.Rooms.FirstOrDefault(r => r.Id == reservation.RoomId);
             if (room == null)
-                return NotFound($"Reservation o podanym ID {reservation.RoomId} nie został znaleziony.");
+                return NotFound($"Room o podanym ID {reservation.RoomId} nie został znaleziony.");
             if (!room.IsActive)
                 return BadRequest("Nie wolno dodać Reservation dla Room oznaczonego jako nieaktywny");
             if (IsTimeConflict(reservation.RoomId, reservation.Date, reservation.StartTime, reservation.EndTime))
